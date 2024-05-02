@@ -116,46 +116,46 @@ export function missingTestKeyInCucumberScenarioError(
         scenario.steps.length > 0
             ? `${scenario.steps[0].keyword.trim()} ${scenario.steps[0].text}`
             : "Given A step";
-    if (scenario.tags && scenario.tags.length > 0) {
-        return new Error(
-            dedent(`
-                No test issue keys found in tags of scenario${
-                    scenario.name.length > 0 ? `: ${scenario.name}` : ""
-                }
+    // if (scenario.tags && scenario.tags.length > 0) {
+    //     return new Error(
+    //         dedent(`
+    //             No test issue keys found in tags of scenario${
+    //                 scenario.name.length > 0 ? `: ${scenario.name}` : ""
+    //             }
 
-                Available tags:
-                  ${scenario.tags.map((tag) => tag.name).join("\n")}
+    //             Available tags:
+    //               ${scenario.tags.map((tag) => tag.name).join("\n")}
 
-                If a tag contains the test issue key already, specify a global prefix to align the plugin with Xray
+    //             If a tag contains the test issue key already, specify a global prefix to align the plugin with Xray
 
-                  For example, with the following plugin configuration:
+    //               For example, with the following plugin configuration:
 
-                    {
-                      cucumber: {
-                        prefixes: {
-                          test: "TestName:"
-                        }
-                      }
-                    }
+    //                 {
+    //                   cucumber: {
+    //                     prefixes: {
+    //                       test: "TestName:"
+    //                     }
+    //                   }
+    //                 }
 
-                  The following tag will be recognized as a test issue tag by the plugin:
+    //               The following tag will be recognized as a test issue tag by the plugin:
 
-                    @TestName:${projectKey}-123
-                    ${scenario.keyword}: ${scenario.name}
-                      ${firstStepLine}
-                      ...
+    //                 @TestName:${projectKey}-123
+    //                 ${scenario.keyword}: ${scenario.name}
+    //                   ${firstStepLine}
+    //                   ...
 
-                For more information, visit:
-                - ${HELP.plugin.guides.targetingExistingIssues}
-                - ${HELP.plugin.configuration.cucumber.prefixes}
-                - ${
-                    isCloudClient
-                        ? HELP.xray.importCucumberTests.cloud
-                        : HELP.xray.importCucumberTests.server
-                }
-            `)
-        );
-    }
+    //             For more information, visit:
+    //             - ${HELP.plugin.guides.targetingExistingIssues}
+    //             - ${HELP.plugin.configuration.cucumber.prefixes}
+    //             - ${
+    //                 isCloudClient
+    //                     ? HELP.xray.importCucumberTests.cloud
+    //                     : HELP.xray.importCucumberTests.server
+    //             }
+    //         `)
+    //     );
+    // }
     return new Error(
         dedent(`
             No test issue keys found in tags of scenario${
